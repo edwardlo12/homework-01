@@ -7,9 +7,9 @@ using namespace std;
 struct yellow
 {
 	int MIN_X;
-	int MAX_X = 0;
+	int MAX_X;
 	int MIN_Y;
-	int MAX_Y = 0;
+	int MAX_Y;
 };
 
 Mat IMGC;
@@ -39,6 +39,7 @@ void onMouse(int Event, int x, int y, int flags, void* param) {
 
 				}
 			}
+		cout << "MIN_X=" << color.MIN_X << " MIN_Y=" << color.MIN_Y << " MAX_X=" << color.MAX_X << " MAX_Y=" << color.MAX_Y << endl;
 		Mat ROI(IMGC, Rect(color.MIN_X, color.MIN_Y, color.MAX_X - color.MIN_X, color.MAX_Y - color.MIN_Y));
 		imshow("ROI", ROI);
 		imwrite("hw1_roi_image.jpg", ROI);
@@ -47,7 +48,6 @@ void onMouse(int Event, int x, int y, int flags, void* param) {
 
 int main()
 {
-	yellow y;
 	Mat img;
 	img=imread("homework_1_original.bmp",IMREAD_COLOR);
 	IMGC = img.clone();
@@ -55,9 +55,7 @@ int main()
 	col = IMGC.cols;
 	row = IMGC.rows;
 	int flag = 0;
-	y.MIN_X = col;
-	y.MIN_Y = row;
-
+	
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
 			//IMGC.at<Vec3b>(i, j) = 0;
@@ -95,7 +93,7 @@ int main()
 		}*/
 			
 
-	cout << "MIN_X=" << y.MIN_X << " MIN_Y=" << y.MIN_Y << " MAX_X=" << y.MAX_X << " MAX_Y=" << y.MAX_Y << endl;
+	
 
 	
 	
